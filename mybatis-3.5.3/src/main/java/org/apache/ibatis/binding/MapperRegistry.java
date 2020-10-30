@@ -113,7 +113,7 @@ public class MapperRegistry {
         // mapper parser. If the type is already known, it won't try.    mapper注解构造器
         MapperAnnotationBuilder parser = new MapperAnnotationBuilder(config, type);
         /**
-         * 进行解析
+         * 进行解析 解析mapper
          */
         parser.parse();
         loadCompleted = true;
@@ -137,7 +137,7 @@ public class MapperRegistry {
    */
   public void addMappers(String packageName, Class<?> superType) {
     ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<>();
-    resolverUtil.find(new ResolverUtil.IsA(superType), packageName);
+    resolverUtil.find(new ResolverUtil.IsA(superType), packageName);//扫描配置的包下的mapper接口的Class
     Set<Class<? extends Class<?>>> mapperSet = resolverUtil.getClasses();
     for (Class<?> mapperClass : mapperSet) {
       addMapper(mapperClass);

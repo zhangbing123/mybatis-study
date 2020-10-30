@@ -187,7 +187,7 @@ public class XMLConfigBuilder extends BaseBuilder {
        <typeAliases>
           <package name="cn.tulingxueyuan.pojo"/>
        </typeAliases>
-       解析到oorg.apache.ibatis.session.Configuration#typeAliasRegistry.typeAliases
+       解析到org.apache.ibatis.session.Configuration#typeAliasRegistry.typeAliases
        */
       typeAliasesElement(root.evalNode("typeAliases"));
       /**
@@ -385,7 +385,7 @@ public class XMLConfigBuilder extends BaseBuilder {
       Properties defaults = context.getChildrenAsProperties();
       String resource = context.getStringAttribute("resource");
       String url = context.getStringAttribute("url");
-      if (resource != null && url != null) {
+      if (resource != null && url != null) {//resource 和 url属性必须只能有一个有值
         throw new BuilderException("The properties element cannot specify both a URL and a resource based property file reference.  Please specify one or the other.");
       }
       if (resource != null) {
@@ -430,7 +430,7 @@ public class XMLConfigBuilder extends BaseBuilder {
     configuration.setLogPrefix(props.getProperty("logPrefix"));
     configuration.setConfigurationFactory(resolveClass(props.getProperty("configurationFactory")));
   }
-
+  //解析配置的事务管理器  和 数据源
   private void environmentsElement(XNode context) throws Exception {
     if (context != null) {
       if (environment == null) {
@@ -539,7 +539,7 @@ public class XMLConfigBuilder extends BaseBuilder {
          */
         if ("package".equals(child.getName())) {
           String mapperPackage = child.getStringAttribute("name");
-          configuration.addMappers(mapperPackage);
+          configuration.addMappers(mapperPackage);//保存我们mapper所在的包
         } else {
           /**
            * 判断从classpath下读取我们的mapper

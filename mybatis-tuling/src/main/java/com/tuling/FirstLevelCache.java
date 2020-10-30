@@ -9,26 +9,27 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.List;
 
-/***
- * @Author 徐庶   QQ:1092002729
- * @Slogan 致敬大师，致敬未来的你
- */
-public class App {
+/**
+ * @description: 验证一级缓存
+ * @author: zhangbing
+ * @create: 2020-10-30 10:08
+ **/
+public class FirstLevelCache {
+
     public static void main(String[] args) {
-        String resource = "mybatis-config.xml";
         Reader reader;
         try {
             //将XML配置文件构建为Configuration配置类
-            reader = Resources.getResourceAsReader(resource);
+            reader = Resources.getResourceAsReader("mybatis-config.xml");
+
             // 通过加载配置文件流构建一个SqlSessionFactory  DefaultSqlSessionFactory
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+
             // 数据源 执行器  DefaultSqlSession
             SqlSession session = sqlSessionFactory.openSession();
+
             try {
-                // 执行查询 底层执行jdbc
-//                User user = (User)session.selectOne("com.tuling.mapper.UserMapper.selectById", 1);
 
                 /**
                  * mybatis的一级缓存是session级别的
@@ -41,7 +42,7 @@ public class App {
 //                System.out.println("更新用户");
 //                user.setUserName("李四");
 //                mapper.updateUser(user);//在这里更新用户后  会清除一级缓存
-                session.clearCache();//清除一级缓存
+//                session.clearCache();//清除一级缓存
 
                 User user1 = mapper.selectById(1L);
                 System.out.println("第二次获取该用户"+user1);

@@ -11,7 +11,8 @@
     </resultMap>
 
 
-    <select id="selectById"  resultMap="result"     >
+    <!-- flushCache="true"表示每次查询时 都会刷新缓存 换句话说就是查询不走缓存了   select默认是false  update和insert默认是true-->
+    <select id="selectById"  resultMap="result" >
         select id,user_name,create_time from t_user
         <where>
             <if test="id > 0">
@@ -19,4 +20,13 @@
             </if>
         </where>
     </select>
+
+    <update id="updateUser" parameterType="com.tuling.entity.User">
+        update t_user
+        <set>
+            <if test="userName != null">user_name=#{userName},</if>
+        </set>
+        where id=#{id}
+    </update>
+
 </mapper>

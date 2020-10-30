@@ -11,4 +11,10 @@ public interface UserMapper {
     User selectById(Long id);
 
     List<User> selectAllUser();
+
+    /**
+     * 更新用户
+     * @param user
+     */
+    void updateUser(User user);
 }
