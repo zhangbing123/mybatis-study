@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tuling.mapper.UserMapper">
-    <cache ></cache>
+    <!--<cache ></cache>-->
     <!-- Mybatis 是如何将 sql 执行结果封装为目标对象并返回的？都有哪些映射形式？-->
     <resultMap id="result" type="com.tuling.entity.User" >
         <id column="id" jdbcType="BIGINT" property="id" />

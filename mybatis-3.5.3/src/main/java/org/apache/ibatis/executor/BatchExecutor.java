@@ -83,7 +83,7 @@ public class BatchExecutor extends BaseExecutor {
       throws SQLException {
     Statement stmt = null;
     try {
-      flushStatements();
+      flushStatements();//刷新所有的sql 针对于update操作，不支持select操作，将所有的sql都加入到批处理中，然后有处理器统一逐个调用处理
       Configuration configuration = ms.getConfiguration();
       StatementHandler handler = configuration.newStatementHandler(wrapper, ms, parameterObject, rowBounds, resultHandler, boundSql);
       Connection connection = getConnection(ms.getStatementLog());

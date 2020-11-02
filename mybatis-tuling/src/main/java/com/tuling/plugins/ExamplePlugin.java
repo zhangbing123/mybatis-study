@@ -16,26 +16,31 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /***
+ * 自定义插件
  * @Author 徐庶   QQ:1092002729
  * @Slogan 致敬大师，致敬未来的你
  */
-@Intercepts({@Signature( type= Executor.class,  method = "query", args ={
-        MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class
+@Intercepts({@Signature(type = Executor.class, method = "query", args = {
+        MappedStatement.class,Object.class, RowBounds.class, ResultHandler.class
 })})
 //@Intercepts({@Signature( type= StatementHandler.class,  method = "update", args ={Statement.class})})
-    public class ExamplePlugin implements Interceptor {
-        public Object intercept(Invocation invocation) throws Throwable {
-            System.out.println("代理");
+public class ExamplePlugin implements Interceptor {
+
+    public Object intercept(Invocation invocation) throws Throwable {
+        System.out.println("代理");
         Object[] args = invocation.getArgs();
-        MappedStatement ms= (MappedStatement) args[0];
+        MappedStatement ms = (MappedStatement) args[0];
         return invocation.proceed();
     }
+
     // new4大对象的时候调用，所以4大对象都会被代理到Plugin
     public Object plugin(Object target) {
+        System.out.println("调用自定义插件的plugin()方法");
         return Plugin.wrap(target, this);
     }
+
     // 加载的时候调用， 设置属性初始化
     public void setProperties(Properties properties) {
-        System.out.println(111);
+        System.out.println("执行自定义插件的setProperties()方法");
     }
 }

@@ -302,7 +302,7 @@ public class MapperAnnotationBuilder {
   }
 
   void parseStatement(Method method) {
-    Class<?> parameterTypeClass = getParameterType(method);
+    Class<?> parameterTypeClass = getParameterType(method);//获取方法的参数类型
     LanguageDriver languageDriver = getLanguageDriver(method);
     SqlSource sqlSource = getSqlSourceFromAnnotations(method, parameterTypeClass, languageDriver);
     if (sqlSource != null) {
@@ -386,7 +386,7 @@ public class MapperAnnotationBuilder {
           // ResultSets
           options != null ? nullOrEmpty(options.resultSets()) : null);
     }
-  }
+    }
 
   private LanguageDriver getLanguageDriver(Method method) {
     Lang lang = method.getAnnotation(Lang.class);

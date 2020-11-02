@@ -77,17 +77,19 @@ public class ReuseExecutor extends BaseExecutor {
     return Collections.emptyList();
   }
 
+
   private Statement prepareStatement(StatementHandler handler, Log statementLog) throws SQLException {
     Statement stmt;
     BoundSql boundSql = handler.getBoundSql();
     String sql = boundSql.getSql();
-    if (hasStatementFor(sql)) {
+    //针对ReuseExecutor执行器  每次执行select/update方法时 先从缓存中获取Statement  没有在新建
+    if (hasStatementFor(sql)) {//判断是否缓存中是否存在Statement  存在就从缓存中取
       stmt = getStatement(sql);
       applyTransactionTimeout(stmt);
-    } else {
+    } else {//没有就新建
       Connection connection = getConnection(statementLog);
       stmt = handler.prepare(connection, transaction.getTimeout());
-      putStatement(sql, stmt);
+      putStatement(sql, stmt);//放入缓存
     }
     handler.parameterize(stmt);
     return stmt;
