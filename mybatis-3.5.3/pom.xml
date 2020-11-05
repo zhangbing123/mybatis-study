@@ -27,7 +27,7 @@
   </parent>
 
   <artifactId>mybatis</artifactId>
-  <version>3.5.3-xsls</version>
+  <version>3.5.3-zb</version>
   <packaging>jar</packaging>
 
   <name>mybatis</name>
