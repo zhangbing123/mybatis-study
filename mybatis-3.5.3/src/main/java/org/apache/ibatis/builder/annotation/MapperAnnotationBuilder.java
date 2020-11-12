@@ -134,7 +134,7 @@ public class MapperAnnotationBuilder {
       assistant.setCurrentNamespace(type.getName());
       parseCache();
       parseCacheRef();
-      // 获取所有方法 看是不是用了注解
+      // 获取所有方法 看是不是用了注解 如果接口方法上用了@Selecr @Update @Insert等注解 为这些方法创建MappedStatement
       Method[] methods = type.getMethods();
       for (Method method : methods) {
         try {
@@ -171,7 +171,7 @@ public class MapperAnnotationBuilder {
     // to prevent loading again a resource twice
     // this flag is set at XMLMapperBuilder#bindMapperForNamespace
     if (!configuration.isResourceLoaded("namespace:" + type.getName())) {
-      String xmlResource = type.getName().replace('.', '/') + ".xml";
+      String xmlResource = type.getName().replace('.', '/') + ".xml";//拼接mapper接口对应的xml
       // #1347
       InputStream inputStream = type.getResourceAsStream("/" + xmlResource);
       if (inputStream == null) {

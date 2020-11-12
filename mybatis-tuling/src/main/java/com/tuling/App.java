@@ -35,17 +35,17 @@ public class App {
                  */
                 UserMapper mapper = session.getMapper(UserMapper.class);
                 System.out.println(mapper.getClass());
-                User user = mapper.selectById(1L);
-                System.out.println("第一次获取该用户"+user);
+                List<User> users = mapper.selectAllUser();
+                System.out.println("第一次获取该用户"+users);
 
 //                System.out.println("更新用户");
 //                user.setUserName("李四");
 //                mapper.updateUser(user);//在这里更新用户后  会清除一级缓存
-                session.clearCache();//清除一级缓存
-
-                User user1 = mapper.selectById(1L);
-                System.out.println("第二次获取该用户"+user1);
-                System.out.println("两次获取的结果"+(user==user1));
+//                session.clearCache();//清除一级缓存
+//
+//                User user1 = mapper.selectById(1L);
+//                System.out.println("第二次获取该用户"+user1);
+//                System.out.println("两次获取的结果"+(users==user1));
                 session.commit();
             } catch (Exception e) {
                 e.printStackTrace();

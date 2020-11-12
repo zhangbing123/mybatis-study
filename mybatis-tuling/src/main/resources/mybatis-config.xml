@@ -7,6 +7,12 @@
 
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 全局性设置懒加载。如果设为‘false'，则所有相关联的都会被初始化加载。 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 当设置为‘true'的时候，懒加载的对象可能被任何懒属性全部加载。否则，每个属性都按需加载。 -->
+        <setting name="aggressiveLazyLoading" value="true"/>
+        <!--设置对象的哪些方法调用会加载延迟查询   默认：equals,clone,hashCode,toString-->
+        <setting name="lazyLoadTriggerMethods" value=""/>
     </settings>
     <plugins>
         <plugin interceptor="com.tuling.plugins.ExamplePlugin"></plugin>
@@ -26,7 +32,9 @@
 
 
     <mappers>
-        <package name="com.tuling.mapper"/>
+        <!--<package name="com.tuling.mapper"/>-->
+        <mapper class="com.tuling.mapper.OrderMapper"></mapper>
+        <mapper class="com.tuling.mapper.UserMapper"></mapper>
     </mappers>
 </configuration>
 

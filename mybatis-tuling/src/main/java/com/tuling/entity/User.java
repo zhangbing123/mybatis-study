@@ -2,6 +2,7 @@ package com.tuling.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /***
  * @Author 徐庶   QQ:1092002729
@@ -12,6 +13,7 @@ public class User implements Serializable{
     private Long id ;
     private String userName ;
     private Date createTime;
+    private List<Order> orders;
 
 
     public Long getId() {
@@ -36,6 +38,14 @@ public class User implements Serializable{
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

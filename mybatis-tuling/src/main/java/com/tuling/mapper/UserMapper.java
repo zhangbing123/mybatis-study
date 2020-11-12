@@ -1,6 +1,8 @@
 package com.tuling.mapper;
 
 import com.tuling.entity.User;
+import org.apache.ibatis.annotations.Select;
+
 import java.util.List;
 
 /***
@@ -8,8 +10,10 @@ import java.util.List;
  * @Slogan 致敬大师，致敬未来的你
  */
 public interface UserMapper {
+
     User selectById(Long id);
 
+    @Select(value = "select * from t_user")
     List<User> selectAllUser();
 
     /**

@@ -2,21 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tuling.mapper.UserMapper">
-    <!--<cache ></cache>-->
+    <!--开启二级缓存-->
+    <cache></cache>
+
     <!-- Mybatis 是如何将 sql 执行结果封装为目标对象并返回的？都有哪些映射形式？-->
-    <resultMap id="result" type="com.tuling.entity.User" >
-        <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="user_name" jdbcType="VARCHAR" property="userName" />
-        <result column="create_time" jdbcType="DATE" property="createTime" />
+    <resultMap id="result" type="com.tuling.entity.User">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
     </resultMap>
 
 
     <!-- flushCache="true"表示每次查询时 都会刷新缓存 换句话说就是查询不走缓存了   select默认是false  update和insert默认是true-->
-    <select id="selectById"  resultMap="result" >
+    <select id="selectById" resultMap="result">
         select id,user_name,create_time from t_user
         <where>
             <if test="id > 0">
-               and id=#{id}
+                and id=#{id}
             </if>
         </where>
     </select>
