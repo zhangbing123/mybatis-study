@@ -13,6 +13,8 @@
         <setting name="aggressiveLazyLoading" value="true"/>
         <!--设置对象的哪些方法调用会加载延迟查询   默认：equals,clone,hashCode,toString-->
         <setting name="lazyLoadTriggerMethods" value=""/>
+        <!--此处可以指定一个执行器  只有三种执行器SIMPLE REUSE BATCH  默认 SIMPLE-->
+        <!--<setting name="defaultExecutorType" value="REUSE"></setting>-->
     </settings>
     <plugins>
         <plugin interceptor="com.tuling.plugins.ExamplePlugin"></plugin>

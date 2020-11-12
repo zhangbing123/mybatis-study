@@ -593,7 +593,7 @@ public class Configuration {
 
   public StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
     StatementHandler statementHandler = new RoutingStatementHandler(executor, mappedStatement, parameterObject, rowBounds, resultHandler, boundSql);
-    statementHandler = (StatementHandler) interceptorChain.pluginAll(statementHandler);
+    statementHandler = (StatementHandler) interceptorChain.pluginAll(statementHandler);//如果自定义插件拦截了StatementHandler的某个方法  则在此处被代理
     return statementHandler;
   }
 
