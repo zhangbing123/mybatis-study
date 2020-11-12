@@ -42,22 +42,27 @@ public class ExamplePlugin implements Interceptor {
      */
     public Object intercept(Invocation invocation) throws Throwable {
         System.out.println("代理");
+        Executor executor = (Executor)invocation.getTarget();
         Object[] args = invocation.getArgs();
         MappedStatement ms = (MappedStatement) args[MS_INDEX];
         //sql的参数
         Object param = args[PARAM_INDEX];
+        RowBounds rowBounds = (RowBounds) args[RB_INDEX];
+        ResultHandler resultHandler = (ResultHandler) args[RH_INDEX];
 
         BoundSql boundSql = ms.getBoundSql(param);
         if (SqlCommandType.SELECT == ms.getSqlCommandType()){
             //只有查询语句才进行分页  再次修改sql
             String sql = boundSql.getSql();
-            sql = sql+" limit 0,10";
+            sql = sql+" limit 1,10";
 
             //通过反射修改sql语句
             Field field = boundSql.getClass().getDeclaredField("sql");
             field.setAccessible(true);
             field.set(boundSql,sql);
-            args[MS_INDEX] = newMappedStatement(ms,boundSql);
+            CacheKey cacheKey = executor.createCacheKey(ms, param, rowBounds, boundSql);
+            return executor.query(ms,param,rowBounds,resultHandler,cacheKey,boundSql);
+//            args[MS_INDEX] = newMappedStatement(ms,boundSql);
 
         }
 
