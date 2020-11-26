@@ -40,8 +40,8 @@ public class TestLazy {
                 List<Order> orders = mapper.selectAll();
 
                 for (Order order : orders) {
-                    User user = order.getUser();
-                    System.out.println(user.getUserName());
+//                    User user = order.getUser();
+//                    System.out.println(user.getUserName());
                 }
 
 

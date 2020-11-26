@@ -16,9 +16,9 @@
         <!--此处可以指定一个执行器  只有三种执行器SIMPLE REUSE BATCH  默认 SIMPLE-->
         <!--<setting name="defaultExecutorType" value="REUSE"></setting>-->
     </settings>
-    <plugins>
-        <plugin interceptor="com.tuling.plugins.ExamplePlugin"></plugin>
-    </plugins>
+    <!--<plugins>-->
+        <!--<plugin interceptor="com.tuling.plugins.ExamplePlugin"></plugin>-->
+    <!--</plugins>-->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>

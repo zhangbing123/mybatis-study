@@ -1,7 +1,6 @@
 package com.tuling.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /***
  * @Author 徐庶   QQ:1092002729
@@ -10,10 +9,11 @@ import java.util.Date;
 public class Order implements Serializable {
 
     private Long id;
-    private Long userId;
+
+    private String orderName;
+
     private String orderAmount;
-    private Date createTime;
-    private User user;
+
 
 
     public Long getId() {
@@ -24,13 +24,7 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 
     public String getOrderAmount() {
         return orderAmount;
@@ -40,19 +34,12 @@ public class Order implements Serializable {
         this.orderAmount = orderAmount;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+
+    public String getOrderName() {
+        return orderName;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setOrderName(String orderName) {
+        this.orderName = orderName;
     }
 }

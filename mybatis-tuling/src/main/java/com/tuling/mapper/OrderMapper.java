@@ -1,5 +1,6 @@
 package com.tuling.mapper;
 
+import com.tuling.OrderQueryReq;
 import com.tuling.entity.Order;
 
 import java.util.List;
@@ -11,4 +12,6 @@ import java.util.List;
 public interface OrderMapper {
 
     List<Order> selectAll();
+
+    List<Order> selectByPage(OrderQueryReq queryReq);
 }
